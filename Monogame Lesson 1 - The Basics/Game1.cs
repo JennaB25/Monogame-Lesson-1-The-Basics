@@ -2,12 +2,23 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SharpDX.Direct3D9;
+using System;
 
 namespace Monogame_Lesson_1___The_Basics
 {
     public class Game1 : Game
     {
+        Random generator = new Random();
+        int randomX;
+        int x = 0;
+        int y = 0;
+        int x_ = 0;
+        int y_ = 0;
         Texture2D dinoTexture;
+        Texture2D buildingTexture;
+        Texture2D streetTexture;
+        Texture2D fireTexture;
+        Texture2D moonTexture;
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
@@ -24,7 +35,7 @@ namespace Monogame_Lesson_1___The_Basics
             _graphics.PreferredBackBufferHeight = 500; 
             _graphics.ApplyChanges(); 
             this.Window.Title = "First Monogame Test";
-
+            randomX = generator.Next(50, 650);           
             base.Initialize();
         }
 
@@ -33,6 +44,10 @@ namespace Monogame_Lesson_1___The_Basics
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             dinoTexture = Content.Load<Texture2D>("dino");
+            buildingTexture = Content.Load<Texture2D>("building");
+            streetTexture = Content.Load<Texture2D>("street");
+            fireTexture = Content.Load<Texture2D>("fire");
+            moonTexture = Content.Load<Texture2D>("moon");
         }
 
         protected override void Update(GameTime gameTime)
@@ -40,22 +55,37 @@ namespace Monogame_Lesson_1___The_Basics
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
-
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Bisque);
-
-            _spriteBatch.Begin();
-            //dinoTexture = Vector2(50, 50);
-            for (int i = 0; i < 5; i++)             
-            {             
-                _spriteBatch.Draw(dinoTexture, new Vector2(i, i), Color.White);      
-            }
+            GraphicsDevice.Clear(Color.MidnightBlue);
             
+            _spriteBatch.Begin();
+
+            x = -50;
+            y = 110;
+            for (int i = 0; i < 10; i++)             
+            {
+                _spriteBatch.Draw(buildingTexture, new Vector2(x, y), Color.White);
+                x += 100;                
+            }
+
+            _spriteBatch.Draw(streetTexture, new Vector2(0, -55), Color.White);
+            _spriteBatch.Draw(streetTexture, new Vector2(610, -55), Color.White);
+
+            x_ = 0;
+            y_ = 290;
+            for (int i = 0; i < 4; i++)
+            {
+                _spriteBatch.Draw(fireTexture, new Vector2(x_, y_), Color.White);
+                x_ += 200;
+            }
+            _spriteBatch.Draw(dinoTexture, new Vector2(100, 170), Color.White);
+
+            _spriteBatch.Draw(moonTexture, new Vector2(randomX, 0), Color.White);
+
             _spriteBatch.End();
 
             base.Draw(gameTime);
