@@ -35,7 +35,7 @@ namespace Monogame_Lesson_1___The_Basics
             _graphics.PreferredBackBufferWidth = 800;
             _graphics.PreferredBackBufferHeight = 500; 
             _graphics.ApplyChanges(); 
-            this.Window.Title = "First Monogame Test";
+            this.Window.Title = "Lesson 1: Monogame Project";
             randomX = generator.Next(50, 650);           
             base.Initialize();
         }
