@@ -19,6 +19,7 @@ namespace Monogame_Lesson_1___The_Basics
         Texture2D streetTexture;
         Texture2D fireTexture;
         Texture2D moonTexture;
+        Texture2D nightskyTexture;
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
@@ -48,6 +49,7 @@ namespace Monogame_Lesson_1___The_Basics
             streetTexture = Content.Load<Texture2D>("street");
             fireTexture = Content.Load<Texture2D>("fire");
             moonTexture = Content.Load<Texture2D>("moon");
+            nightskyTexture = Content.Load<Texture2D>("nightsky");
         }
 
         protected override void Update(GameTime gameTime)
@@ -63,6 +65,8 @@ namespace Monogame_Lesson_1___The_Basics
             GraphicsDevice.Clear(Color.MidnightBlue);
             
             _spriteBatch.Begin();
+
+            _spriteBatch.Draw(nightskyTexture, new Vector2(-60, -120), Color.White);           
 
             x = -50;
             y = 110;
